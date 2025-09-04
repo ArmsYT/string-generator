@@ -4,20 +4,17 @@
   <meta charset="UTF-8" />
   <title id="ghwName">String Generator | XXXX</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" id="styleHref" href="/./style.css">
+  <link rel="stylesheet" href="https://armsyt.github.io/string-generator/style.css">
   <link rel="shortcut icon" id="ghwAvatar" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div class="container" id="card">
-    <!-- Sélecteur de langue -->
     <div class="lang-switch" aria-label="Language">
       <button id="langFR" class="lang-btn" data-lang="fr" onclick="generatePassword()" onchange="generatePassword()">FR</button>
       <span class="lang-sep">|</span>
       <button id="langEN" class="lang-btn" data-lang="en" onclick="generatePassword()" onchange="generatePassword()">EN</button>
     </div>
-
     <h2 id="title" data-i18n="appTitle">🔑 String Generator</h2>
-
     <div class="password-box" aria-live="polite">
       <div id="result" class="result" data-i18n="loading" title="Faites défiler pour voir tout le code">Loading...</div>
       <div class="actions">
@@ -25,7 +22,6 @@
         <button id="btnCopy" class="icon-btn" title="Copy" onclick="copyPassword()">📋</button>
       </div>
     </div>
-
     <div class="row">
       <label for="length" id="lengthLabel" data-i18n="lengthLabel">Length :</label>
       <input type="number" id="length" min="4" max="50" value="12" onchange="clampLength(); syncRange(); generatePassword();">
@@ -33,19 +29,15 @@
         <input type="range" id="lengthRange" min="4" max="50" value="12" oninput="syncNumber(); generatePassword();">
       </div>
     </div>
-
     <div class="options">
       <label class="opt"><input type="checkbox" id="uppercase" checked onchange="generatePassword()"> <span data-i18n="uppercase">Uppercase</span></label>
       <label class="opt"><input type="checkbox" id="lowercase" checked onchange="generatePassword()"> <span data-i18n="lowercase">Lowercase</span></label>
       <label class="opt"><input type="checkbox" id="numbers"  checked onchange="generatePassword()"> <span data-i18n="numbers">Numbers</span></label>
       <label class="opt"><input type="checkbox" id="symbols" onchange="generatePassword()"> <span data-i18n="symbols">Symbols</span></label>
     </div>
-
     <div style="margin-top:16px">
       <button id="generateBtn" class="btn" data-i18n="generate" onclick="generatePassword()">Generate</button>
     </div>
-
-    <!-- GitHub dynamic credits -->
     <div class="credits-wrap" aria-live="polite">
       <div id="ghCard" class="gh-card">
         <img class="gh-avatar" id="ghAvatar" alt="avatar" src="" style="opacity:.3">
@@ -56,8 +48,7 @@
       </div>
     </div>
   </div>
-
   <div id="toast" class="toast" data-i18n="toastCopied">Code copied ✅</div>
-  <script id="scriptHref" src="https://armsyt.github.io/string-generator/script.js"></script>
+  <script src="https://armsyt.github.io/string-generator/script.js"></script>
 </body>
 </html>
