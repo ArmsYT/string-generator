@@ -1,5 +1,4 @@
 const GITHUB_USER = "ArmsYT";
-
 const I18N = {
     en: {
         appTitle: "🔑 String Generator",

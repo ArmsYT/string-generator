@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title id="ghwName">String Generator | XXXX</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/./style.css">
+  <link rel="stylesheet" id="styleHref" href="/./style.css">
   <link rel="shortcut icon" id="ghwAvatar" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -59,6 +59,14 @@
 
   <div id="toast" class="toast" data-i18n="toastCopied">Code copied ✅</div>
 
-  <script src="/./script.js"></script>
+  <script>
+    const currentLocation = 'window.location.href';
+    const style = document.getElementById('styleHref');
+    const script = document.getElementById('scriptHref');
+    
+    style.href = `${currentLocation}style.css`;
+    script.src = `${currentLocation}script.js`
+  </script>
+  <script id="scriptHref" src="/./script.js"></script>
 </body>
 </html>
