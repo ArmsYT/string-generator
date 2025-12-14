@@ -7,7 +7,7 @@ Bilingual **FR/EN** (persisted via **cookies**), composition options, one-click 
 
 ## ✨ Features
 
-- **Configurable** generation (4–50 characters)
+- **Configurable** generation (4–100 characters)
   - Uppercase · Lowercase · Numbers · Symbols
 - **One-click** copy
 - **Bilingual** FR/EN with a language switcher

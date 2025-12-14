@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title id="ghwName">String Generator | XXXX</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="https://armsyt.github.io/string-generator/style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" id="ghwAvatar" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -14,7 +14,9 @@
       <span class="lang-sep">|</span>
       <button id="langEN" class="lang-btn" data-lang="en" onclick="generatePassword()" onchange="generatePassword()">EN</button>
     </div>
+
     <h2 id="title" data-i18n="appTitle">🔑 String Generator</h2>
+
     <div class="password-box" aria-live="polite">
       <div id="result" class="result" data-i18n="loading" title="Faites défiler pour voir tout le code">Loading...</div>
       <div class="actions">
@@ -22,22 +24,57 @@
         <button id="btnCopy" class="icon-btn" title="Copy" onclick="copyPassword()">📋</button>
       </div>
     </div>
-    <div class="row">
-      <label for="length" id="lengthLabel" data-i18n="lengthLabel">Length :</label>
-      <input type="number" id="length" min="4" max="50" value="12" onchange="clampLength(); syncRange(); generatePassword();">
-      <div class="range">
-        <input type="range" id="lengthRange" min="4" max="50" value="12" oninput="syncNumber(); generatePassword();">
+
+    <div id="strengthWrap" class="strength-wrap" data-strength="none" aria-live="polite">
+      <div class="strength-head">
+        <span class="strength-label" data-i18n="strengthLabel">Strength</span>
+        <span id="strengthText" class="strength-text">—</span>
+      </div>
+      <div id="strengthBar" class="strength-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="strengthFill" class="strength-fill" style="width:0%"></div>
+      </div>
+      <div class="strength-meta">
+        <span id="strengthEntropy" class="strength-entropy">—</span>
+        <span class="strength-shortcuts" data-i18n="shortcutHint">Shortcuts: Enter = regenerate, Ctrl/Cmd+C = copy, Ctrl/Cmd+Enter = x10</span>
+      </div>
+      <div id="weakWarning" class="warning" role="alert" hidden data-i18n="warningWeak">
+        ⚠️ Too weak: increase length or enable more character types.
       </div>
     </div>
+
+    <div class="row">
+      <label for="length" id="lengthLabel" data-i18n="lengthLabel">Length :</label>
+      <input type="number" id="length" min="4" max="100" value="12" onchange="clampLength(); syncRange(); generatePassword();">
+      <div class="range">
+        <input type="range" id="lengthRange" min="4" max="100" value="12" oninput="syncNumber(); generatePassword();">
+      </div>
+    </div>
+
     <div class="options">
       <label class="opt"><input type="checkbox" id="uppercase" checked onchange="generatePassword()"> <span data-i18n="uppercase">Uppercase</span></label>
       <label class="opt"><input type="checkbox" id="lowercase" checked onchange="generatePassword()"> <span data-i18n="lowercase">Lowercase</span></label>
       <label class="opt"><input type="checkbox" id="numbers"  checked onchange="generatePassword()"> <span data-i18n="numbers">Numbers</span></label>
       <label class="opt"><input type="checkbox" id="symbols" onchange="generatePassword()"> <span data-i18n="symbols">Symbols</span></label>
+      <label class="opt"><input type="checkbox" id="regenOnCopy" onchange="savePrefs()"> <span data-i18n="regenOnCopy">Regenerate after copy</span></label>
     </div>
-    <div style="margin-top:16px">
+
+    <div class="btn-row" style="margin-top:16px">
       <button id="generateBtn" class="btn" data-i18n="generate" onclick="generatePassword()">Generate</button>
+      <button id="generate10Btn" class="btn secondary" data-i18n="generate10" onclick="generateBulk(10)">Generate x10</button>
     </div>
+
+    <div id="bulkWrap" class="bulk-wrap" hidden>
+      <div class="bulk-head">
+        <div class="bulk-title" data-i18n="bulkTitle">Lot (x10)</div>
+        <div class="bulk-actions">
+          <button id="btnCopyBulk" class="icon-btn" title="Copy x10" onclick="copyBulk()">📋</button>
+          <button id="btnCloseBulk" class="icon-btn" title="Close" onclick="toggleBulk(false)">✖</button>
+        </div>
+      </div>
+      <textarea id="bulkResult" class="bulk-result" readonly spellcheck="false"></textarea>
+      <div class="bulk-meta" data-i18n="bulkHint">Tip: Ctrl/Cmd+Enter generates x10.</div>
+    </div>
+
     <div class="credits-wrap" aria-live="polite">
       <div id="ghCard" class="gh-card">
         <img class="gh-avatar" id="ghAvatar" alt="avatar" src="" style="opacity:.3">
@@ -48,7 +85,21 @@
       </div>
     </div>
   </div>
+
+  <!-- Opens automatically when you copy x10 -->
+  <div id="bulkDrawer" class="bulk-drawer" aria-hidden="true">
+    <div class="bulk-drawer-head">
+      <div class="bulk-drawer-title" data-i18n="drawerTitle">Copied (x10)</div>
+      <div class="bulk-drawer-actions">
+        <button id="btnCopyDrawer" class="icon-btn" title="Copy x10" onclick="copyDrawer()">📋</button>
+        <button id="btnCloseDrawer" class="icon-btn" title="Close" onclick="toggleDrawer(false)">✖</button>
+      </div>
+    </div>
+    <textarea id="bulkDrawerList" class="bulk-drawer-list" readonly spellcheck="false"></textarea>
+    <div class="bulk-drawer-meta" data-i18n="drawerHint">Last copied batch (1 per line).</div>
+  </div>
+
   <div id="toast" class="toast" data-i18n="toastCopied">Code copied ✅</div>
-  <script src="https://armsyt.github.io/string-generator/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
