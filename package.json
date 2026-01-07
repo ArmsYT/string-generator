@@ -1,0 +1,30 @@
+{
+    "name": "string-generator",
+    "version": "1.0.0",
+    "main": "main.js",
+    "private": true,
+    "scripts": {
+        "dev": "electron .",
+        "build": "electron-builder --win --x64"
+    },
+    "devDependencies": {
+        "electron": "^31.0.0",
+        "electron-builder": "^24.0.0"
+    },
+    "build": {
+        "appId": "fr.thearms.stringgenerator",
+        "productName": "String Generator",
+        "files": ["main.js", "preload.js", "renderer/**/*"],
+        "win": {
+            "icon": "build/icon.ico",
+            "target": ["nsis", "portable"]
+        },
+        "directories": { "buildResources": "build" },
+        "nsis": {
+            "installerIcon": "build/icon.ico",
+            "uninstallerIcon": "build/icon.ico",
+            "installerHeaderIcon": "build/icon.ico"
+        }
+    }
+
+}
